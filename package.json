@@ -1,0 +1,22 @@
+{
+  "name": "myapp",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch app.ts"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^0.8.0",
+    "@elysiajs/jwt": "^0.8.0",
+    "@elysiajs/static": "^0.8.1",
+    "@elysiajs/swagger": "^0.8.5",
+    "@types/pg": "^8.11.4",
+    "elysia": "latest",
+    "pg": "^8.11.4",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}
