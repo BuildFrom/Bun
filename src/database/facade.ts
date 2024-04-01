@@ -22,7 +22,6 @@ class Connection {
 
 class ConnectionPool {
   pool: Connection[];
-
   constructor(config: {
     connectionString: string | undefined;
     poolSize: number | undefined;
@@ -89,11 +88,11 @@ class MongoAdapter extends Adapter {
 }
 
 const AdapterFacade = (connectionString: string) => {
-  if (connectionString.includes("postgres")) {
+  if (connectionString.startsWith("postgres")) {
     return new PostgresAdapter(connectionString);
-  } else if (connectionString.includes("redis")) {
+  } else if (connectionString.startsWith("redis")) {
     return new RedisAdapter(connectionString);
-  } else if (connectionString.includes("mongo")) {
+  } else if (connectionString.startsWith("mongo")) {
     return new MongoAdapter(connectionString);
   } else {
     throw new Error("Unknown adapter");
