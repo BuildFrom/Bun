@@ -1,14 +1,18 @@
-import { Pool } from "pg";
-import AdapterFacade from "./facade";
+import { AdapterFacade } from "./index";
 
-const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "yourdb",
-  password: "lol",
-  port: 5432,
-});
+const url = AdapterFacade(
+  "postgresql://postgres:password@localhost:5432/postgres"
+);
 
-const adapter = AdapterFacade("postgres://postgres:lol@localhost:5432/yourdb");
+async function db() {
+  try {
+    const connectionPool = url.createConnectionPool(10);
+    const conn = connectionPool.checkout();
+    console.log("Connection obtained", conn);
+    return conn;
+  } catch (error: any) {
+    throw new Error("Error obtaining connection: " + error.message);
+  }
+}
 
-export default pool;
+export default db;
