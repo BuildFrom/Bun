@@ -7,7 +7,7 @@ const controller = new UserController();
 const service = new UserService();
 
 user
-  .get("/", () => controller.getAll())
+  .get("/", () => controller.getAll)
   .get("/:id", ({ params }) => `Get One: ${params.id}`)
   .post("/", ({ body }) => `Create: ${JSON.stringify(body)}`)
   .patch(

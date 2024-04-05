@@ -3,5 +3,6 @@
 // controllers: logic
 // services: pass logic, design database queries
 
-export { default as user } from "./user";
-export { default as auth } from "./auth";
+export { default as user } from "./UserRouter";
+export { default as auth } from "./AuthRouter";
+export { default as health } from "./HealthRouter";

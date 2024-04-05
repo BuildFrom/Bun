@@ -6,13 +6,20 @@ const loginSchema = z.object({
   password: r.passwordRule,
 });
 
-const registerSchema = z.object({
-  name: r.nameSchema,
-  username: r.usernameRule,
-  email: r.emailRule,
-  password: r.passwordRule,
-  confirm_password: r.passwordRule,
-});
+const registerSchema = z
+  .object({
+    name: r.nameSchema,
+    username: r.usernameRule,
+    email: r.emailRule,
+    password: r.passwordRule,
+    confirm_password: r.passwordRule,
+  })
+  .superRefine((data) => {
+    if (data.password !== data.confirm_password) {
+      return { confirm_password: "Passwords do not match" };
+    }
+    return data;
+  });
 
 const validate = {
   loginSchema,
